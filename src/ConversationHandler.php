@@ -5,10 +5,19 @@ declare(strict_types=1);
 class ConversationHandler
 {
     private \PDO $db;
+    private OpenAIClient $openAIClient;
 
-    public function __construct(\PDO $db)
+    public function __construct(\PDO $db, OpenAIClient $openAIClient)
     {
         $this->db = $db;
+        $this->openAIClient = $openAIClient;
+    }
+
+    public function generateResponse(int $conversationId, string $model): string
+    {
+        $messages = $this->getMessages($conversationId);
+        $prompt = implode("\n", array_map(fn($msg) => $msg['content'], $messages));
+        return $this->openAIClient->getCompletion($prompt, $model);
     }
 
     public function createConversation(string $title, string $modelConfig, ?string $systemPrompt = null): int
