@@ -5,7 +5,11 @@ declare(strict_types=1);
 require_once __DIR__ . '/../src/ConversationHandler.php';
 
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
-$conversationHandler = new ConversationHandler($db);
+require_once __DIR__ . '/../src/OpenAIClient.php';
+
+$apiKey = 'your-api-key-here'; // Sett inn din faktiske API-nøkkel
+$openAIClient = new OpenAIClient($apiKey);
+$conversationHandler = new ConversationHandler($db, $openAIClient);
 
 $conversationId = $_GET['id'] ?? null;
 if (!$conversationId) {
