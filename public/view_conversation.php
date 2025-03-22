@@ -20,7 +20,7 @@ if (!$conversationId) {
 $conversation = $conversationHandler->getConversation((int)$conversationId);
 $messages = $conversationHandler->getMessages((int)$conversationId);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
     $messageId = (int)$_POST['message_id'];
     $content = $_POST['content'];
     $conversationHandler->updateMessage($messageId, $content);
@@ -28,6 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_response'])) {
+    $model = $conversation['model_config'];
+    $response = $conversationHandler->generateResponse((int)$conversationId, $model);
+    $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'assistant', $response);
+    header("Location: view_conversation.php?id=$conversationId");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -54,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     <?php endforeach; ?>
+    <form method="post">
+        <button type="submit" name="generate_response">Generer KI-respons</button>
+    </form>
     <a href="index.php">Tilbake til samtaler</a>
 </body>
 </html>
