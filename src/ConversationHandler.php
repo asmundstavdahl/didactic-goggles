@@ -48,4 +48,38 @@ class ConversationHandler
         $stmt = $this->db->prepare('DELETE FROM conversation WHERE id = :id');
         return $stmt->execute([':id' => $id]);
     }
+    public function createMessage(int $conversationId, int $sequence, string $type, string $content): int
+    {
+        $stmt = $this->db->prepare('INSERT INTO message (conversation_id, sequence, type, content) VALUES (:conversation_id, :sequence, :type, :content)');
+        $stmt->execute([
+            ':conversation_id' => $conversationId,
+            ':sequence' => $sequence,
+            ':type' => $type,
+            ':content' => $content,
+        ]);
+
+        return (int)$this->db->lastInsertId();
+    }
+
+    public function getMessages(int $conversationId): array
+    {
+        $stmt = $this->db->prepare('SELECT * FROM message WHERE conversation_id = :conversation_id ORDER BY sequence');
+        $stmt->execute([':conversation_id' => $conversationId]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function updateMessage(int $id, string $content): bool
+    {
+        $stmt = $this->db->prepare('UPDATE message SET content = :content, edited_at = CURRENT_TIMESTAMP WHERE id = :id');
+        return $stmt->execute([
+            ':id' => $id,
+            ':content' => $content,
+        ]);
+    }
+
+    public function deleteMessage(int $id): bool
+    {
+        $stmt = $this->db->prepare('DELETE FROM message WHERE id = :id');
+        return $stmt->execute([':id' => $id]);
+    }
 }
