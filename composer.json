@@ -1,7 +1,7 @@
 {
     "require": {
         "php": "^7.4 || ^8.0",
-        "openai/openai": "^0.2"
+        "openai/openai": "dev-main"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1"
