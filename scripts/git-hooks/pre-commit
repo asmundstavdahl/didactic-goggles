@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Running PHPStan..."
+vendor/bin/phpstan analyze
+
+if [ $? -ne 0 ]; then
+    echo "PHPStan found issues. Commit aborted."
+    exit 1
+fi
+
+exit 0
