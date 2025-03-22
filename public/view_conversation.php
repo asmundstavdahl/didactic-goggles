@@ -20,7 +20,7 @@ if (!$conversationId) {
 $conversation = $conversationHandler->getConversation((int)$conversationId);
 $messages = $conversationHandler->getMessages((int)$conversationId);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $messageId = (int)$_POST['message_id'];
     $content = $_POST['content'];
     $conversationHandler->updateMessage($messageId, $content);
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_response'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $model = $conversation['model_config'];
     $response = $conversationHandler->generateResponse((int)$conversationId, $model);
     $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'assistant', $response);
