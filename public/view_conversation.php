@@ -29,6 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conversationHandler->updateMessage($messageId, $content);
         header("Location: view_conversation.php?id=$conversationId");
         exit;
+    } elseif (isset($_POST['send_message'])) {
+        // Handle user message
+        $userMessage = filter_input(INPUT_POST, 'user_message', FILTER_SANITIZE_STRING);
+        if (!empty($userMessage)) {
+            $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'user', $userMessage);
+            header("Location: view_conversation.php?id=$conversationId");
+            exit;
+        }
     } elseif (isset($_POST['generate_response'])) {
         // Handle response generation
         $model = $conversation['model_config'];
@@ -64,9 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     <?php endforeach; ?>
+    <h2>Ny melding</h2>
+    <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
+        <textarea name="user_message" rows="4" required></textarea>
+        <button type="submit" name="send_message">Send melding</button>
+    </form>
+    
+    <h2>KI-handlinger</h2>
     <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
         <button type="submit" name="generate_response" value="1">Generer KI-respons</button>
     </form>
-    <a href="index.php">Tilbake til samtaler</a>
+    
+    <p><a href="index.php">Tilbake til samtaler</a></p>
 </body>
 </html>
