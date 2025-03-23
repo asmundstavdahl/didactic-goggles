@@ -15,9 +15,19 @@ class ConversationHandler
 
     public function generateResponse(int $conversationId, string $model): string
     {
+        $conversation = $this->getConversation($conversationId);
         $messages = $this->getMessages($conversationId);
         $formattedMessages = [];
         
+        // Add system prompt if it exists
+        if (!empty($conversation['system_prompt'])) {
+            $formattedMessages[] = [
+                'role' => 'system',
+                'content' => $conversation['system_prompt']
+            ];
+        }
+        
+        // Add conversation messages
         foreach ($messages as $msg) {
             $formattedMessages[] = [
                 'role' => $msg['type'],
