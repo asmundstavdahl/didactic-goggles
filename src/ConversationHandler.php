@@ -114,6 +114,15 @@ class ConversationHandler
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getMessage(int $id): ?array
+    {
+        $stmt = $this->db->prepare('SELECT * FROM message WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        $message = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $message ?: null;
+    }
+
     public function updateMessage(int $id, string $content): bool
     {
         $stmt = $this->db->prepare('UPDATE message SET content = :content, edited_at = CURRENT_TIMESTAMP WHERE id = :id');

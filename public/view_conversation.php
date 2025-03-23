@@ -78,13 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="message">
             <p><strong>Type:</strong> <?php echo htmlspecialchars($message['type']); ?></p>
             <p><strong>Innhold:</strong> <?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></p>
-            <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
-                <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
-                <textarea name="content"><?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
-                <button type="submit">Oppdater</button>
-                <button type="submit" formaction="handle_form.php?action=delete_message" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett melding</button>
-            </form>
+            <p>
+                <a href="edit_message.php?id=<?php echo $message['id']; ?>">Rediger</a>
+                <form method="post" action="handle_form.php?action=delete_message" style="display: inline;">
+                    <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
+                    <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
+                    <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett</button>
+                </form>
+            </p>
         </div>
     <?php endforeach; ?>
     <h2>Ny melding</h2>
