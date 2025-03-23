@@ -10,7 +10,7 @@ session_start();
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $apiKey = 'your-api-key-here';
-$openAIClient = OpenAI::factory()->withApiKey($apiKey)->make();
+$openAIClient = \OpenAI::factory()->withApiKey($apiKey)->make();
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
 try {

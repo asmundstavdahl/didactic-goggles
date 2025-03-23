@@ -9,7 +9,7 @@ use OpenAI\OpenAI;
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $apiKey = 'your-api-key-here'; // Sett inn din faktiske API-nøkkel
-$openAIClient = OpenAI::factory()->withApiKey($apiKey)->make();
+$openAIClient = \OpenAI::factory()->withApiKey($apiKey)->make();
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
 $conversations = $db->query('SELECT * FROM conversation')->fetchAll(PDO::FETCH_ASSOC);
