@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-use OpenAI\Client;
-
 class OpenAIClient
 {
     private \OpenAI\Client $client;
 
     public function __construct(string $apiKey)
     {
-        $this->client = new Client($apiKey);
+        $this->client = \OpenAI::client($apiKey);
     }
 
     public function getCompletion(string $prompt, string $model): string
