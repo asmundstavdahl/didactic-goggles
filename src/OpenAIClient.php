@@ -10,9 +10,9 @@ class OpenAIClient
 
     public function __construct(string $apiKey)
     {
-        $this->client = new \OpenAI\Client([
-            'api_key' => $apiKey,
-        ]);
+        $this->client = \OpenAI::factory()
+            ->withApiKey($apiKey)
+            ->make();
     }
 
     public function getCompletion(string $prompt, string $model): string
@@ -29,5 +29,10 @@ class OpenAIClient
     public function completions()
     {
         return $this->client->completions();
+    }
+    
+    public function chat()
+    {
+        return $this->client->chat();
     }
 }
