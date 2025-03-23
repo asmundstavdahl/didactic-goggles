@@ -12,9 +12,7 @@ class OpenAIClient
 
     public function __construct(string $apiKey)
     {
-        $this->client = OpenAI::factory()
-            ->withApiKey($apiKey)
-            ->make();
+        $this->client = new Client($apiKey);
     }
 
     public function getCompletion(string $prompt, string $model): string
