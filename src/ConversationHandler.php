@@ -16,14 +16,34 @@ class ConversationHandler
     public function generateResponse(int $conversationId, string $model): string
     {
         $messages = $this->getMessages($conversationId);
-        $prompt = implode("\n", array_map(fn($msg) => $msg['content'], $messages));
-        $response = $this->openAIClient->completions()->create([
-            'model' => $model,
-            'prompt' => $prompt,
-            'max_tokens' => 150,
-        ]);
-
-        return $response['choices'][0]['text'] ?? '';
+        $formattedMessages = [];
+        
+        foreach ($messages as $msg) {
+            $formattedMessages[] = [
+                'role' => $msg['type'],
+                'content' => $msg['content']
+            ];
+        }
+        
+        try {
+            $response = $this->openAIClient->chat()->create([
+                'model' => $model,
+                'messages' => $formattedMessages,
+                'max_tokens' => 150,
+            ]);
+            
+            return $response->choices[0]->message->content ?? '';
+        } catch (\Exception $e) {
+            // Fallback to completions if chat fails
+            $prompt = implode("\n", array_map(fn($msg) => $msg['content'], $messages));
+            $response = $this->openAIClient->completions()->create([
+                'model' => $model,
+                'prompt' => $prompt,
+                'max_tokens' => 150,
+            ]);
+            
+            return $response->choices[0]->text ?? '';
+        }
     }
 
     public function createConversation(string $title, string $modelConfig, ?string $systemPrompt = null): int
