@@ -95,12 +95,13 @@ class ConversationHandler
     }
     public function createMessage(int $conversationId, int $sequence, string $type, string $content): int
     {
+        // Store raw content in database
         $stmt = $this->db->prepare('INSERT INTO message (conversation_id, sequence, type, content) VALUES (:conversation_id, :sequence, :type, :content)');
         $stmt->execute([
             ':conversation_id' => $conversationId,
             ':sequence' => $sequence,
             ':type' => $type,
-            ':content' => $content,
+            ':content' => $content, // Store raw content
         ]);
 
         return (int)$this->db->lastInsertId();
