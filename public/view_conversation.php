@@ -77,10 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php foreach ($messages as $message): ?>
         <div class="message">
             <p><strong>Type:</strong> <?php echo htmlspecialchars($message['type']); ?></p>
-            <p><strong>Innhold:</strong> <?php echo htmlspecialchars($message['content']); ?></p>
+            <p><strong>Innhold:</strong> <?php echo $message['content']; ?></p>
             <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
                 <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                <textarea name="content"><?php echo htmlspecialchars($message['content']); ?></textarea>
+                <textarea name="content"><?php echo $message['content']; ?></textarea>
                 <button type="submit">Oppdater</button>
             </form>
         </div>
