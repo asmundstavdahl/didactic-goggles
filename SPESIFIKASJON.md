@@ -91,7 +91,6 @@ Personvernhensyn
 Systemet er designet for personlig bruk og har ikke innebygd innlogging.
 Alle data lagres lokalt på brukerens server.
 API-nøkler til eksterne tjenester skal lagres i konfigurasjonsfiler, ikke i databasen.
-Det skal være mulig å enkelt eksportere og slette alle data.
 
 6. Testing og kvalitetssikring
 Testmetoder
