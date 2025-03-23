@@ -24,8 +24,14 @@ if (!$conversationId) {
     exit;
 }
 
-$conversation = $conversationHandler->getConversation((int)$conversationId);
-$messages = $conversationHandler->getMessages((int)$conversationId);
+$conversationId = (int)$conversationId;
+$conversation = $conversationHandler->getConversation($conversationId);
+
+if (!$conversation) {
+    die("Samtale med ID $conversationId ble ikke funnet.");
+}
+
+$messages = $conversationHandler->getMessages($conversationId);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['message_id']) && isset($_POST['content'])) {
@@ -65,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-    <h1><?php echo htmlspecialchars($conversation['title']); ?></h1>
+    <h1><?php echo htmlspecialchars($conversation['title'] ?? 'Untitled Conversation'); ?></h1>
     <p><a href="edit_conversation.php?id=<?php echo $conversationId; ?>">Rediger samtaleinnstillinger</a></p>
     <h2>Meldinger</h2>
     <?php foreach ($messages as $message): ?>
