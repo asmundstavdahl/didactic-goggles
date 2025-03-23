@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Innhold:</strong> <?php echo $message['content']; ?></p>
             <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
                 <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                <textarea name="content"><?php echo $message['content']; ?></textarea>
+                <textarea name="content"><?php echo htmlspecialchars_decode($message['content']); ?></textarea>
                 <button type="submit">Oppdater</button>
             </form>
         </div>
