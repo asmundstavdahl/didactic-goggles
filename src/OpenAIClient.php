@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use OpenAI\Laravel\Facades\OpenAI;
+use OpenAI\Client;
 
 class OpenAIClient
 {
-    private \OpenAI\Client $client;
+    private Client $client;
 
     public function __construct(string $apiKey)
     {
-        $this->client = OpenAI::client($apiKey);
+        $this->client = OpenAI::factory()
+            ->withApiKey($apiKey)
+            ->make();
     }
 
     public function getCompletion(string $prompt, string $model): string
