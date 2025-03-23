@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use OpenAI\Client;
 use OpenAI\OpenAI;
 
 class OpenAIClient
 {
-    private Client $client;
+    private $client;
 
     public function __construct(string $apiKey)
     {
@@ -27,5 +26,10 @@ class OpenAIClient
         ]);
 
         return $response['choices'][0]['text'] ?? '';
+    }
+    
+    public function completions()
+    {
+        return $this->client->completions();
     }
 }

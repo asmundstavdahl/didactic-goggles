@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../src/ConversationHandler.php';
 
-use OpenAI\Client;
+require_once __DIR__ . '/../src/OpenAIClient.php';
 
 session_start();
 
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $apiKey = 'your-api-key-here';
-$openAIClient = new Client(['api_key' => $apiKey]);
+$openAIClient = new OpenAIClient($apiKey);
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
 try {

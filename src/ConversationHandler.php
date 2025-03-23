@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-use OpenAI\OpenAI;
-
 class ConversationHandler
 {
     private \PDO $db;
-    private OpenAI $openAIClient;
+    private $openAIClient;
 
-    public function __construct(\PDO $db, OpenAI $openAIClient)
+    public function __construct(\PDO $db, $openAIClient)
     {
         $this->db = $db;
         $this->openAIClient = $openAIClient;
