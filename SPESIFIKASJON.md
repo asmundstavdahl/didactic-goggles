@@ -21,7 +21,7 @@ Ikke-funksjonelle krav
 
 JavaScript skal unngås som pesten. Alt skal skje på serversiden. Kun minimale funksjonelle ting skal gjøres med JS, men kun hvis det ikke er mulig å gjøre det med HTML og/eller CSS. Endre heller på HTML-strukturen som sendes fra serveren enn å benytte JavaScript.
 Systemet skal være svært enkelt å sette opp. PHP  og php-sqlite bør være nok.
-OpenAI sitt offisielle SDK for API-et deres skal benyttes.
+PHP's curl extension skal benyttes for å kommunisere med OpenAI sitt API, ikke deres offisielle SDK.
 Færrest mulig tredjeparts komponenter skal benyttes.
 Teknisk kompleksitet skal begrenses til et minimum.
 All PHP-kode skal ha fullt spesifiserte typer. I alle tilfeller der det ikke er mulig å spesifisere typen nøyaktig med PHPs innebygde typesystem, skal PHPDoc med PHPStan-kompatible typespesifikssjoner benyttes.
