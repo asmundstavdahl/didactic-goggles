@@ -8,4 +8,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Running PHP-CS-Fixer..."
+vendor/bin/php-cs-fixer fix --dry-run --diff
+
+if [ $? -ne 0 ]; then
+    echo "PHP-CS-Fixer found formatting issues. Run 'vendor/bin/php-cs-fixer fix' to fix them."
+    exit 1
+fi
+
 exit 0
