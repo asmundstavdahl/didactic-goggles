@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use OpenAI\Client;
+use OpenAI\OpenAI;
 
 class OpenAIClient
 {
@@ -12,7 +13,9 @@ class OpenAIClient
 
     public function __construct(string $apiKey)
     {
-        $this->client = new Client($apiKey);
+        $this->client = OpenAI::factory()
+            ->withApiKey($apiKey)
+            ->make();
     }
 
     public function getCompletion(string $prompt, string $model): string
