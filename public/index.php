@@ -54,6 +54,10 @@ $conversations = $db->query('SELECT * FROM conversation')->fetchAll(PDO::FETCH_A
             <p>Opprettet: <?php echo htmlspecialchars($conversation['created_at']); ?></p>
             <p>Sist oppdatert: <?php echo htmlspecialchars($conversation['updated_at']); ?></p>
             <a href="view_conversation.php?id=<?php echo $conversation['id']; ?>">Vis samtale</a>
+            <form method="post" action="handle_form.php?action=delete_conversation" style="display: inline;">
+                <input type="hidden" name="id" value="<?php echo $conversation['id']; ?>">
+                <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne samtalen?')">Slett samtale</button>
+            </form>
         </div>
     <?php endforeach; ?>
 </body>

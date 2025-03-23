@@ -80,8 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Innhold:</strong> <?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></p>
             <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
                 <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
+                <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
                 <textarea name="content"><?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
                 <button type="submit">Oppdater</button>
+                <button type="submit" formaction="handle_form.php?action=delete_message" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett melding</button>
             </form>
         </div>
     <?php endforeach; ?>
