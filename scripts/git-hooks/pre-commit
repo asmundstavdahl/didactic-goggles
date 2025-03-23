@@ -9,10 +9,10 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Running PHP-CS-Fixer..."
-vendor/bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes
+vendor/bin/php-cs-fixer fix --diff --allow-risky=yes
 
 if [ $? -ne 0 ]; then
-    echo "PHP-CS-Fixer found formatting issues. Run 'vendor/bin/php-cs-fixer fix --allow-risky=yes' to fix them."
+    echo "PHP-CS-Fixer made formatting changes. Please review and commit them."
     exit 1
 fi
 
