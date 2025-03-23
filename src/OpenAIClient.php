@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use OpenAI\OpenAI;
-
 class OpenAIClient
 {
     private $client;
 
     public function __construct(string $apiKey)
     {
-        $this->client = OpenAI::factory()
+        $this->client = \OpenAI::factory()
             ->withApiKey($apiKey)
             ->make();
     }
