@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
+use OpenAI\OpenAI;
+
 class ConversationHandler
 {
     private \PDO $db;
-    private OpenAIClient $openAIClient;
+    private OpenAI $openAIClient;
 
-    public function __construct(\PDO $db, OpenAIClient $openAIClient)
+    public function __construct(\PDO $db, OpenAI $openAIClient)
     {
         $this->db = $db;
         $this->openAIClient = $openAIClient;
@@ -17,7 +19,13 @@ class ConversationHandler
     {
         $messages = $this->getMessages($conversationId);
         $prompt = implode("\n", array_map(fn($msg) => $msg['content'], $messages));
-        return $this->openAIClient->getCompletion($prompt, $model);
+        $response = $this->openAIClient->completions()->create([
+            'model' => $model,
+            'prompt' => $prompt,
+            'max_tokens' => 150,
+        ]);
+
+        return $response['choices'][0]['text'] ?? '';
     }
 
     public function createConversation(string $title, string $modelConfig, ?string $systemPrompt = null): int

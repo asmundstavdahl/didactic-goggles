@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/ConversationHandler.php';
-require_once __DIR__ . '/../src/OpenAIClient.php'; // Include the OpenAIClient class
+
+use OpenAI\OpenAI;
 
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $apiKey = 'your-api-key-here'; // Sett inn din faktiske API-nøkkel
-$openAIClient = new OpenAIClient($apiKey);
+$openAIClient = OpenAI::factory()->withApiKey($apiKey)->make();
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
 $conversations = $db->query('SELECT * FROM conversation')->fetchAll(PDO::FETCH_ASSOC);

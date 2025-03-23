@@ -4,10 +4,12 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/ConversationHandler.php';
 
+use OpenAI\OpenAI;
+
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $apiKey = 'your-api-key-here';
-$openAIClient = new OpenAIClient($apiKey);
+$openAIClient = OpenAI::factory()->withApiKey($apiKey)->make();
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
 ?>
