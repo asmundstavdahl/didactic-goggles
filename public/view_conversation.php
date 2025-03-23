@@ -22,19 +22,21 @@ $conversation = $conversationHandler->getConversation((int)$conversationId);
 $messages = $conversationHandler->getMessages((int)$conversationId);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $messageId = (int)$_POST['message_id'];
-    $content = $_POST['content'];
-    $conversationHandler->updateMessage($messageId, $content);
-    header("Location: view_conversation.php?id=$conversationId");
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $model = $conversation['model_config'];
-    $response = $conversationHandler->generateResponse((int)$conversationId, $model);
-    $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'assistant', $response);
-    header("Location: view_conversation.php?id=$conversationId");
-    exit;
+    if (isset($_POST['message_id']) && isset($_POST['content'])) {
+        // Handle message update
+        $messageId = (int)$_POST['message_id'];
+        $content = $_POST['content'];
+        $conversationHandler->updateMessage($messageId, $content);
+        header("Location: view_conversation.php?id=$conversationId");
+        exit;
+    } elseif (isset($_POST['generate_response'])) {
+        // Handle response generation
+        $model = $conversation['model_config'];
+        $response = $conversationHandler->generateResponse((int)$conversationId, $model);
+        $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'assistant', $response);
+        header("Location: view_conversation.php?id=$conversationId");
+        exit;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -55,15 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="message">
             <p><strong>Type:</strong> <?php echo htmlspecialchars($message['type']); ?></p>
             <p><strong>Innhold:</strong> <?php echo htmlspecialchars($message['content']); ?></p>
-            <form method="post">
+            <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
                 <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
                 <textarea name="content"><?php echo htmlspecialchars($message['content']); ?></textarea>
                 <button type="submit">Oppdater</button>
             </form>
         </div>
     <?php endforeach; ?>
-    <form method="post">
-        <button type="submit" name="generate_response">Generer KI-respons</button>
+    <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
+        <button type="submit" name="generate_response" value="1">Generer KI-respons</button>
     </form>
     <a href="index.php">Tilbake til samtaler</a>
 </body>
