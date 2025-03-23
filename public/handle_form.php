@@ -7,7 +7,6 @@ require_once __DIR__ . '/../src/ConversationHandler.php';
 session_start();
 
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
-require_once __DIR__ . '/../src/OpenAIClient.php';
 
 $apiKey = 'your-api-key-here';
 $openAIClient = new OpenAIClient($apiKey);

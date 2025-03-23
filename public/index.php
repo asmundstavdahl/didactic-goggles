@@ -6,7 +6,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/ConversationHandler.php';
 
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
-require_once __DIR__ . '/../src/OpenAIClient.php';
 
 $apiKey = 'your-api-key-here'; // Sett inn din faktiske API-nøkkel
 $openAIClient = new OpenAIClient($apiKey);
