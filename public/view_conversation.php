@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1><?php echo htmlspecialchars($conversation['title']); ?></h1>
+    <p><a href="edit_conversation.php?id=<?php echo $conversationId; ?>">Rediger samtaleinnstillinger</a></p>
     <h2>Meldinger</h2>
     <?php foreach ($messages as $message): ?>
         <div class="message">
