@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <form method="post">
         <div class="form-group">
-            <textarea name="content"><?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="content"><?php echo $message['content']; ?></textarea>
         </div>
         
         <button type="submit" class="button">Lagre endringer</button>

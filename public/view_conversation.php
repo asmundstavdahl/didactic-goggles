@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php foreach ($messages as $message): ?>
         <div class="message">
             <p><strong>Type:</strong> <?php echo htmlspecialchars($message['type']); ?></p>
-            <p><strong>Innhold:</strong> <?php echo htmlspecialchars($message['content'], ENT_QUOTES, 'UTF-8'); ?></p>
+            <p><strong>Innhold:</strong> <?php echo $message['content']; ?></p>
             <p>
                 <a href="edit_message.php?id=<?php echo $message['id']; ?>">Rediger</a>
                 <form method="post" action="handle_form.php?action=delete_message" style="display: inline;">
