@@ -9,7 +9,12 @@ require_once __DIR__ . '/../src/OpenAIClient.php';
 $db = new PDO('sqlite:' . __DIR__ . '/../chatphp.db');
 
 $config = require __DIR__ . '/../config.php';
-$apiKey = $config['api_key'];
+$apiKey = $config['api_key'] ?? '';
+
+if (empty($apiKey)) {
+    die('OpenAI API key is not configured. Please check your config.php file.');
+}
+
 $openAIClient = new OpenAIClient($apiKey);
 $conversationHandler = new ConversationHandler($db, $openAIClient);
 
