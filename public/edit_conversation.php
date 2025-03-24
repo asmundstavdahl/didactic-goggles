@@ -56,17 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="post">
         <div class="form-group">
             <label for="title">Tittel:</label>
-            <input type="text" id="title" name="title" value="<?php echo $conversation['title'] ?? ''; ?>" required>
+            <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($conversation['title'] ?? ''); ?>" required>
         </div>
         
         <div class="form-group">
             <label for="model_config">Modellkonfigurasjon:</label>
-            <input type="text" id="model_config" name="model_config" value="<?php echo $conversation['model_config'] ?? ''; ?>" required>
+            <input type="text" id="model_config" name="model_config" value="<?php echo htmlspecialchars($conversation['model_config'] ?? ''); ?>" required>
         </div>
         
         <div class="form-group">
             <label for="system_prompt">Systemprompt:</label>
-            <textarea id="system_prompt" name="system_prompt"><?php echo $conversation['system_prompt'] ?? ''; ?></textarea>
+            <textarea id="system_prompt" name="system_prompt"><?php echo htmlspecialchars($conversation['system_prompt'] ?? ''); ?></textarea>
         </div>
         
         <button type="submit" class="button">Lagre endringer</button>
