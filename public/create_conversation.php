@@ -48,25 +48,27 @@ $conversationHandler = new ConversationHandler($db, $openAIClient);
 </head>
 <body>
     <h1>Ny samtale</h1>
-    <div class="form-container">
-        <form action="handle_form.php?action=create" method="POST">
-            <div class="form-group">
-                <label for="title">Tittel:</label>
-                <input type="text" id="title" name="title" required>
+    <div class="conversation-form">
+        <form class="conversation-form__form" action="handle_form.php?action=create" method="POST">
+            <div class="conversation-form__group">
+                <label class="conversation-form__label" for="title">Tittel:</label>
+                <input class="conversation-form__input" type="text" id="title" name="title" required>
             </div>
             
-            <div class="form-group">
-                <label for="system_prompt">Systeminstruksjon:</label>
-                <textarea id="system_prompt" name="system_prompt" rows="4"></textarea>
+            <div class="conversation-form__group">
+                <label class="conversation-form__label" for="system_prompt">Systeminstruksjon:</label>
+                <textarea class="conversation-form__textarea" id="system_prompt" name="system_prompt" rows="4"></textarea>
             </div>
             
-            <div class="form-group">
-                <label for="model_config">Modelkonfigurasjon:</label>
-                <input type="text" id="model_config" name="model_config" value="gpt-3.5-turbo" required>
+            <div class="conversation-form__group">
+                <label class="conversation-form__label" for="model_config">Modelkonfigurasjon:</label>
+                <input class="conversation-form__input" type="text" id="model_config" name="model_config" value="gpt-3.5-turbo" required>
             </div>
             
-            <button type="submit" class="button">Opprett samtale</button>
-            <a href="index.php" class="button">Avbryt</a>
+            <div class="conversation-form__actions">
+                <button type="submit" class="button">Opprett samtale</button>
+                <a href="index.php" class="button button--secondary">Avbryt</a>
+            </div>
         </form>
     </div>
 </body>
