@@ -10,4 +10,5 @@ if (empty($apiKey)) {
 
 return [
     'api_key' => $apiKey,
+    'api_url' => 'https://openrouter.ai/api/v1',
 ];
