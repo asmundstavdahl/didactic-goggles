@@ -5,11 +5,13 @@ declare(strict_types=1);
 class OpenAIClient
 {
     private string $apiKey;
-    private string $apiUrl = 'https://api.openai.com/v1';
+    private string $apiUrl;
 
     public function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
+        $config = require __DIR__ . '/../config.php';
+        $this->apiUrl = $config['api_url'];
     }
 
     public function getCompletion(string $prompt, string $model): string
