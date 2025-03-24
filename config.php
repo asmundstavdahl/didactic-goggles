@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-$apiKey = getenv("OPENAI_API_KEY") ?: 'your-api-key-here';
+$apiKey = getenv("OPENROUTER_API_KEY") ?: 'your-api-key-here';
 
 if (empty($apiKey)) {
-    throw new RuntimeException('OpenAI API key is not configured. Please set OPENAI_API_KEY environment variable or edit config.php');
+    throw new RuntimeException('OpenRouter API key is not configured. Please set OPENROUTER_API_KEY environment variable or edit config.php');
 }
 
 return [
