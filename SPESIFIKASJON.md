@@ -8,6 +8,7 @@ Skaperen finner ikke et "ChatGPT"-liknende system som kan kjøres på privat ser
 Omfang
 Det legges i første omgang opp til at en installasjon av ChatPHP er ment for én person, uten innebygd innlogging.
 Brukergrensesnittet skal være primitivt, men funksjonelt.
+BEM-mønsteret (Block Element Modifier) skal følges for alle betydelige HTML-elementer for å sikre konsistent og vedlikeholdbar CSS-struktur.
 Strømming av tokens i responsene skal ikke støttes, av hensyn til teknisk kompleksitet.
 Kravspesifikasjon
 Funksjonelle krav
@@ -70,6 +71,7 @@ Grensesnittet skal være selvforklarende og ikke kreve opplæring.
 Fokus skal være på innhold fremfor pynt.
 Alle funksjoner skal være tilgjengelige uten bruk av JavaScript.
 Designet skal være tilpasset personer med høy teknisk kompetanse.
+CSS-struktur skal følge BEM-mønsteret (Block Element Modifier) for å sikre god vedlikeholdbarhet og gjenbrukbarhet av komponenter.
 
 Strukturell oppbygning
 Systemet skal ikke ha wireframes eller mockups. Et enkelt HTML-dokument med CSS skal være tilstrekkelig for å beskrive grensesnittet.
