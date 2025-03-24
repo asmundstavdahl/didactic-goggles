@@ -8,6 +8,7 @@ Skaperen finner ikke et "ChatGPT"-liknende system som kan kjøres på privat ser
 Omfang
 Det legges i første omgang opp til at en installasjon av ChatPHP er ment for én person, uten innebygd innlogging.
 Brukergrensesnittet skal være primitivt, men funksjonelt.
+Meldinger skal rendres som Markdown for å støtte rik tekstformatering.
 BEM-mønsteret (Block Element Modifier) skal følges for alle betydelige HTML-elementer for å sikre konsistent og vedlikeholdbar CSS-struktur.
 Strømming av tokens i responsene skal ikke støttes, av hensyn til teknisk kompleksitet.
 Kravspesifikasjon
@@ -20,10 +21,10 @@ Hver melding i samtalehistorikken skal kunne redigeres av brukeren, til og med f
 
 Ikke-funksjonelle krav
 
-JavaScript skal unngås som pesten. Alt skal skje på serversiden. Kun minimale funksjonelle ting skal gjøres med JS, men kun hvis det ikke er mulig å gjøre det med HTML og/eller CSS. Endre heller på HTML-strukturen som sendes fra serveren enn å benytte JavaScript.
+JavaScript skal unngås som pesten. Alt skal skje på serversiden. Kun minimale funksjonelle ting skal gjøres med JS, men kun hvis det ikke er mulig å gjøre det med HTML og/eller CSS. Endre heller på HTML-strukturen som sendes fra serveren enn å benytte JavaScript. Unntaket er Markdown-rendering som skal gjøres på klientsiden for å unngå unødvendig serverbelastning.
 Systemet skal være svært enkelt å sette opp. PHP  og php-sqlite bør være nok.
 PHP's curl extension skal benyttes for å kommunisere med OpenAI sitt API, ikke deres offisielle SDK.
-Færrest mulig tredjeparts komponenter skal benyttes.
+Færrest mulig tredjeparts komponenter skal benyttes. Unntaket er Markdown-rendering som skal benytte Showdown.js for å sikre korrekt og konsistent Markdown-til-HTML konvertering.
 Teknisk kompleksitet skal begrenses til et minimum.
 All PHP-kode skal ha fullt spesifiserte typer. I alle tilfeller der det ikke er mulig å spesifisere typen nøyaktig med PHPs innebygde typesystem, skal PHPDoc med PHPStan-kompatible typespesifikssjoner benyttes.
 Frontend skal være "dum" – bruk standard HTML- og HTTP-oppførsler slik de er ment for å bli brukt.
