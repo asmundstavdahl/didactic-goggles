@@ -42,7 +42,7 @@ $conversationHandler = new ConversationHandler($db, $openAIClient);
             
             <div class="conversation-form__actions">
                 <button type="submit" class="button">Opprett samtale</button>
-                <a href="index.php" class="button button--secondary">Avbryt</a>
+                <a href="index.php" class="button__secondary">Avbryt</a>
             </div>
         </form>
     </div>

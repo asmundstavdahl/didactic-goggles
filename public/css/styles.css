@@ -43,7 +43,7 @@ body {
     cursor: pointer;
 }
 
-.button--secondary {
+.button__secondary {
     background-color: #6c757d;
 }
 

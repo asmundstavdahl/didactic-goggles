@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         
         <button type="submit" class="button">Lagre endringer</button>
-        <a href="view_conversation.php?id=<?php echo $conversationId; ?>" class="button">Avbryt</a>
+        <a href="view_conversation.php?id=<?php echo $conversationId; ?>" class="button__secondary">Avbryt</a>
     </form>
 </body>
 </html>
