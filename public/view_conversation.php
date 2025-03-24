@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Vis Samtale</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.js"></script>
 </head>
 <body>
     <h1><?php echo htmlspecialchars($conversation['title'] ?? 'Untitled Conversation'); ?></h1>
@@ -75,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="chat-container">
         <?php foreach ($messages as $message): ?>
             <div class="message message--<?php echo htmlspecialchars($message['type']); ?>">
-                <div class="message__content">
-                    <?php echo nl2br(htmlspecialchars($message['content'])); ?>
+                <div class="message__content" data-markdown>
+                    <?php echo htmlspecialchars($message['content']); ?>
                 </div>
                 <div class="message__actions">
                     <a href="edit_message.php?id=<?php echo $message['id']; ?>" class="message__action" title="Rediger">
@@ -105,5 +106,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     
     <p><a href="index.php" class="button__secondary">Tilbake til samtaler</a></p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const converter = new showdown.Converter();
+            const markdownElements = document.querySelectorAll('[data-markdown]');
+            
+            markdownElements.forEach(element => {
+                const markdown = element.textContent;
+                const html = converter.makeHtml(markdown);
+                element.innerHTML = html;
+            });
+        });
+    </script>
 </body>
 </html>

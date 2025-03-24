@@ -95,6 +95,49 @@ body {
     white-space: pre-wrap;
 }
 
+.message__content p {
+    margin: 0 0 1em;
+}
+
+.message__content p:last-child {
+    margin-bottom: 0;
+}
+
+.message__content code {
+    background-color: rgba(0,0,0,0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+.message__content pre {
+    background-color: rgba(0,0,0,0.05);
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+}
+
+.message__content blockquote {
+    border-left: 3px solid rgba(0,0,0,0.1);
+    margin: 1em 0;
+    padding-left: 1em;
+    color: rgba(0,0,0,0.7);
+}
+
+.message__content ul,
+.message__content ol {
+    padding-left: 1.5em;
+    margin: 1em 0;
+}
+
+.message__content li {
+    margin-bottom: 0.5em;
+}
+
+.message__content a {
+    color: inherit;
+    text-decoration: underline;
+}
+
 .message__actions {
     margin-top: 8px;
     text-align: right;
