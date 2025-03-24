@@ -28,7 +28,7 @@ if (!$message) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
+    $content = $_POST['content'] ?? '';
     if (!empty($content)) {
         $conversationHandler->updateMessage((int)$messageId, $content);
         header("Location: view_conversation.php?id={$message['conversation_id']}");

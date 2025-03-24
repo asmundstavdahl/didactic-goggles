@@ -19,9 +19,9 @@ try {
         $action = $_GET['action'] ?? '';
         
         if ($action === 'create') {
-            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-            $systemPrompt = filter_input(INPUT_POST, 'system_prompt', FILTER_SANITIZE_STRING);
-            $modelConfig = filter_input(INPUT_POST, 'model_config', FILTER_SANITIZE_STRING);
+            $title = $_POST['title'] ?? '';
+            $systemPrompt = $_POST['system_prompt'] ?? '';
+            $modelConfig = $_POST['model_config'] ?? '';
 
             if (empty($title) || empty($modelConfig)) {
                 throw new InvalidArgumentException('Tittel og modelkonfigurasjon er påkrevd');
@@ -36,7 +36,7 @@ try {
             header("Location: view_conversation.php?id=$conversationId");
             exit();
         } elseif ($action === 'delete_conversation') {
-            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
             if (!$id) {
                 throw new InvalidArgumentException('Ugyldig samtale-ID');
             }
@@ -49,8 +49,8 @@ try {
             header("Location: index.php");
             exit();
         } elseif ($action === 'delete_message') {
-            $messageId = filter_input(INPUT_POST, 'message_id', FILTER_VALIDATE_INT);
-            $conversationId = filter_input(INPUT_POST, 'conversation_id', FILTER_VALIDATE_INT);
+            $messageId = isset($_POST['message_id']) ? (int)$_POST['message_id'] : 0;
+            $conversationId = isset($_POST['conversation_id']) ? (int)$_POST['conversation_id'] : 0;
             if (!$messageId || !$conversationId) {
                 throw new InvalidArgumentException('Ugyldig meldings-ID eller samtale-ID');
             }

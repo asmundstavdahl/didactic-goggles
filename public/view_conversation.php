@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } elseif (isset($_POST['send_message'])) {
         // Handle user message
-        $userMessage = filter_input(INPUT_POST, 'user_message', FILTER_SANITIZE_STRING);
+        $userMessage = $_POST['user_message'] ?? '';
         if (!empty($userMessage)) {
             $conversationHandler->createMessage((int)$conversationId, count($messages) + 1, 'user', $userMessage);
             header("Location: view_conversation.php?id=$conversationId");
