@@ -96,6 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="generate_response" value="1">Generer KI-respons</button>
     </form>
     
-    <p><a href="index.php">Tilbake til samtaler</a></p>
+    <p><a href="index.php" class="button__secondary">Tilbake til samtaler</a></p>
 </body>
 </html>
