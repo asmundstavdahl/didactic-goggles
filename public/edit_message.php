@@ -42,29 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rediger Melding</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .form-group { margin-bottom: 20px; }
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>Rediger Melding</h1>

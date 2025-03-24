@@ -48,28 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rediger Samtale</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 5px; }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        textarea { height: 150px; }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>Rediger Samtale</h1>

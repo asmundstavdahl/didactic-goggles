@@ -27,22 +27,7 @@ $conversations = $db->query('SELECT * FROM conversation')->fetchAll(PDO::FETCH_A
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatPHP</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .conversation { margin-bottom: 20px; }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>ChatPHP</h1>

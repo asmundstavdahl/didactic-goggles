@@ -65,10 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vis Samtale</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .message { margin-bottom: 20px; }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1><?php echo htmlspecialchars($conversation['title'] ?? 'Untitled Conversation'); ?></h1>

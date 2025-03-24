@@ -1,0 +1,75 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Conversation form styles */
+.conversation-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.conversation-form__group {
+    margin-bottom: 15px;
+}
+
+.conversation-form__label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.conversation-form__input,
+.conversation-form__textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.conversation-form__textarea {
+    resize: vertical;
+}
+
+/* Button styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.button--secondary {
+    background-color: #6c757d;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Conversation list styles */
+.conversation {
+    margin-bottom: 20px;
+}
+
+/* Message styles */
+.message {
+    margin-bottom: 20px;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Textarea styles */
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    box-sizing: border-box;
+}
