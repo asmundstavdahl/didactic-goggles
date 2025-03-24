@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const markdownElements = document.querySelectorAll('[data-markdown]');
             
             markdownElements.forEach(element => {
-                const markdown = element.textContent;
+                const markdown = element.textContent.trimStart();
                 const html = converter.makeHtml(markdown);
                 element.innerHTML = html;
             });
