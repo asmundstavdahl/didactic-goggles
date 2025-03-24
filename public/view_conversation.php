@@ -71,20 +71,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1><?php echo htmlspecialchars($conversation['title'] ?? 'Untitled Conversation'); ?></h1>
     <p><a href="edit_conversation.php?id=<?php echo $conversationId; ?>">Rediger samtaleinnstillinger</a></p>
     <h2>Meldinger</h2>
-    <?php foreach ($messages as $message): ?>
-        <div class="message">
-            <p><strong>Type:</strong> <?php echo htmlspecialchars($message['type']); ?></p>
-            <p><strong>Innhold:</strong> <?php echo nl2br(htmlspecialchars($message['content'])); ?></p>
-            <p>
-                <a href="edit_message.php?id=<?php echo $message['id']; ?>">Rediger</a>
-                <form method="post" action="handle_form.php?action=delete_message" style="display: inline;">
-                    <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                    <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
-                    <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett</button>
-                </form>
-            </p>
-        </div>
-    <?php endforeach; ?>
+    <div class="chat-container">
+        <?php foreach ($messages as $message): ?>
+            <div class="message message--<?php echo htmlspecialchars($message['type']); ?>">
+                <div class="message__content">
+                    <?php echo nl2br(htmlspecialchars($message['content'])); ?>
+                </div>
+                <div class="message__actions">
+                    <a href="edit_message.php?id=<?php echo $message['id']; ?>" class="message__action">Rediger</a>
+                    <form method="post" action="handle_form.php?action=delete_message" class="message__action">
+                        <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
+                        <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
+                        <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett</button>
+                    </form>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
     <h2>Ny melding</h2>
     <form method="post" action="view_conversation.php?id=<?php echo $conversationId; ?>">
         <textarea name="user_message" rows="4" required></textarea>
