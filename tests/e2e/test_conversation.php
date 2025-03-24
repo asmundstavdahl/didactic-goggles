@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = '../..';
 
 function makePostRequest(string $endpoint, array $postData): array
 {
@@ -114,7 +114,27 @@ function runTests()
 // Run tests when script is executed
 if (__FILE__ === $_SERVER['SCRIPT_FILENAME']) {
     try {
-        runTests();
+        $conversationTitle = 'Test Conversation';
+        $messageContent = 'Hello, world!';
+        
+        // Create conversation
+        $createResponse = makePostRequest('/create_conversation.php', [
+            'title' => $conversationTitle,
+            'model_config' => 'gpt-3.5-turbo'
+        ]);
+        assertResponseOk($createResponse);
+        
+        // Create message
+        $messageResponse = makePostRequest('/edit_message.php', [
+            'conversation_id' => 1,
+            'content' => $messageContent
+        ]);
+        assertResponseOk($messageResponse);
+        
+        // Verify message appears
+        $conversationHtml = makeGetRequest('/view_conversation.php');
+        assertStringContains($messageContent, $conversationHtml['content']);
+        
         echo "All tests passed successfully!\n";
     } catch (Throwable $e) {
         echo "Test failed: " . $e->getMessage() . "\n";
