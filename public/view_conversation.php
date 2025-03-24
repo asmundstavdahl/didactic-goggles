@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vis Samtale</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <h1><?php echo htmlspecialchars($conversation['title'] ?? 'Untitled Conversation'); ?></h1>
@@ -78,11 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php echo nl2br(htmlspecialchars($message['content'])); ?>
                 </div>
                 <div class="message__actions">
-                    <a href="edit_message.php?id=<?php echo $message['id']; ?>" class="message__action">Rediger</a>
+                    <a href="edit_message.php?id=<?php echo $message['id']; ?>" class="message__action" title="Rediger">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     <form method="post" action="handle_form.php?action=delete_message" class="message__action">
                         <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
                         <input type="hidden" name="conversation_id" value="<?php echo $conversationId; ?>">
-                        <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')">Slett</button>
+                        <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne meldingen?')" title="Slett">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
                     </form>
                 </div>
             </div>

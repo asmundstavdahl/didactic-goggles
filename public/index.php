@@ -38,10 +38,14 @@ $conversations = $db->query('SELECT * FROM conversation')->fetchAll(PDO::FETCH_A
             <h3><?php echo htmlspecialchars($conversation['title']); ?></h3>
             <p>Opprettet: <?php echo htmlspecialchars($conversation['created_at']); ?></p>
             <p>Sist oppdatert: <?php echo htmlspecialchars($conversation['updated_at']); ?></p>
-            <a href="view_conversation.php?id=<?php echo $conversation['id']; ?>">Vis samtale</a>
+            <a href="view_conversation.php?id=<?php echo $conversation['id']; ?>" title="Vis samtale">
+                <i class="fas fa-eye"></i>
+            </a>
             <form method="post" action="handle_form.php?action=delete_conversation" style="display: inline;">
                 <input type="hidden" name="id" value="<?php echo $conversation['id']; ?>">
-                <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne samtalen?')">Slett samtale</button>
+                <button type="submit" onclick="return confirm('Er du sikker på at du vil slette denne samtalen?')" title="Slett samtale">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
             </form>
         </div>
     <?php endforeach; ?>

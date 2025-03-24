@@ -52,8 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea name="content"><?php echo htmlspecialchars($message['content']); ?></textarea>
         </div>
         
-        <button type="submit" class="button">Lagre endringer</button>
-        <a href="view_conversation.php?id=<?php echo $message['conversation_id']; ?>" class="button__secondary">Avbryt</a>
+        <button type="submit" class="button" title="Lagre">
+            <i class="fas fa-save"></i>
+        </button>
+        <a href="view_conversation.php?id=<?php echo $message['conversation_id']; ?>" class="button__secondary" title="Avbryt">
+            <i class="fas fa-times"></i>
+        </a>
     </form>
 </body>
 </html>
