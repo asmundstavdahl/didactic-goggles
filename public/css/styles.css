@@ -44,10 +44,17 @@ body {
 }
 
 .button__secondary {
+    padding: 10px 20px;
     background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button__secondary:hover {
     opacity: 0.9;
 }
 
